@@ -36,13 +36,12 @@ jobs:
 
       - name: Set up Kubeconfig
         run: |
-          echo $HOME
           mkdir -p $HOME/.kube
           mkdir -p $HOME/.minikube/profiles/minikube
           echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
-          echo "${{ secrets.CA_CRT }}" | $HOME/.minikube/ca.crt
-          echo "${{ secrets.CLIENT_KEY }}" | $HOME/.minikube/profiles/minikube/client.key
-          echo "${{ secrets.CLIENT_CRT }}" | $HOME/.minikube/profiles/minikube/client.crt
+          echo "${{ secrets.CA_CRT }}" > $HOME/.minikube/ca.crt
+          echo "${{ secrets.CLIENT_KEY }}" > $HOME/.minikube/profiles/minikube/client.key
+          echo "${{ secrets.CLIENT_CRT }}" > $HOME/.minikube/profiles/minikube/client.crt
 
       - name: Deploy to Kubernetes
         run: |
