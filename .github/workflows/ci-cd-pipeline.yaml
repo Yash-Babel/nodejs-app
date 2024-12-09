@@ -46,3 +46,12 @@ jobs:
           # ls /home/yash/.minikube
           # ls /home/yash/.minikube/profiles/minikube
           # kubectl apply -f k8s/deployment.yaml
+
+      - name: Annotate Deployment Status
+        if: failure()
+        run: echo "::error::Deployment failed! Please check the logs."
+
+      - name: Annotate Success Status
+        if: success()
+        run: echo "::notice::Deployment succeeded! Your application is live."
+
