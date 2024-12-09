@@ -60,7 +60,6 @@ jobs:
           to: "getnotice7@gmail.com"
           from: "CI/CD Pipeline"
 
-
       - name: Send Email Notification
         if: success()
         uses: dawidd6/action-send-mail@v3
