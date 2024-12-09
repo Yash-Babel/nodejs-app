@@ -38,7 +38,7 @@ jobs:
         run: |
           echo $HOME
           mkdir -p $HOME/.kube
-          mkdir -p $HOME/.minikube/profiles/minikube
+          mkdir -p home/yash/.minikube/profiles/minikube
           echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
           echo "${{ secrets.CA_CRT }}" > home/yash/.minikube/ca.crt
           echo "${{ secrets.CLIENT_KEY }}" > home/yash/.minikube/profiles/minikube/client.key
