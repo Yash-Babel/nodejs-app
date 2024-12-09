@@ -37,7 +37,10 @@ jobs:
       - name: Set up Kubeconfig
         run: |
           mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
+
+      - name: Use context
+        run: kubectl config use-context octobay-api
 
       - name: Deploy to Kubernetes
         run: |
