@@ -41,13 +41,6 @@ jobs:
           echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
           kubectl get pods
           kubectl get svc
-          # mkdir -p /home/yash/.minikube/profiles/minikube
-          # echo "${{ secrets.CA_CRT }}" > /home/yash/.minikube/ca.crt
-          # echo "${{ secrets.CLIENT_KEY }}" > /home/yash/.minikube/profiles/minikube/client.key
-          # echo "${{ secrets.CLIENT_CRT }}" > /home/yash/.minikube/profiles/minikube/client.crt
-          # ls /home/yash/.minikube
-          # ls /home/yash/.minikube/profiles/minikube
-          # kubectl apply -f k8s/deployment.yaml
 
       - name: Annotate Deployment Status
         if: failure()
