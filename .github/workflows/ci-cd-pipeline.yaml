@@ -36,11 +36,8 @@ jobs:
 
       - name: Set up Kubeconfig
         run: |
-          # echo $HOME
           mkdir -p $HOME/.kube
           echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
-          kubectl get pods
-          kubectl get svc
 
       - name: Annotate Deployment Status
         if: failure()
