@@ -34,15 +34,15 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-app:latest
 
-      - name: Set up Kubeconfig
-        run: |
-          echo $HOME
-          mkdir -p $HOME/.kube
-          mkdir -p /home/yash/.minikube/profiles/minikube
-          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
-          echo "${{ secrets.CA_CRT }}" > /home/yash/.minikube/ca.crt
-          echo "${{ secrets.CLIENT_KEY }}" > /home/yash/.minikube/profiles/minikube/client.key
-          echo "${{ secrets.CLIENT_CRT }}" > /home/yash/.minikube/profiles/minikube/client.crt
-          ls /home/yash/.minikube
-          ls /home/yash/.minikube/profiles/minikube
-          kubectl apply -f k8s/deployment.yaml
+      # - name: Set up Kubeconfig
+      #   run: |
+          # echo $HOME
+          # mkdir -p $HOME/.kube
+          # echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
+          # mkdir -p /home/yash/.minikube/profiles/minikube
+          # echo "${{ secrets.CA_CRT }}" > /home/yash/.minikube/ca.crt
+          # echo "${{ secrets.CLIENT_KEY }}" > /home/yash/.minikube/profiles/minikube/client.key
+          # echo "${{ secrets.CLIENT_CRT }}" > /home/yash/.minikube/profiles/minikube/client.crt
+          # ls /home/yash/.minikube
+          # ls /home/yash/.minikube/profiles/minikube
+          # kubectl apply -f k8s/deployment.yaml
