@@ -34,11 +34,13 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-app:latest
 
-      # - name: Set up Kubeconfig
-      #   run: |
+      - name: Set up Kubeconfig
+        run: |
           # echo $HOME
-          # mkdir -p $HOME/.kube
-          # echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
+          kubectl get pods
+          kubectl get svc
           # mkdir -p /home/yash/.minikube/profiles/minikube
           # echo "${{ secrets.CA_CRT }}" > /home/yash/.minikube/ca.crt
           # echo "${{ secrets.CLIENT_KEY }}" > /home/yash/.minikube/profiles/minikube/client.key
