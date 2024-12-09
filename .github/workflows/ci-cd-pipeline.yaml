@@ -42,6 +42,8 @@ jobs:
           echo "${{ secrets.CA_CRT }}" > $HOME/.minikube/ca.crt
           echo "${{ secrets.CLIENT_KEY }}" > $HOME/.minikube/profiles/minikube/client.key
           echo "${{ secrets.CLIENT_CRT }}" > $HOME/.minikube/profiles/minikube/client.crt
+          ls $HOME/.minikube
+          ls $HOME/.minikube/profiles/minikube
 
       - name: Deploy to Kubernetes
         run: |
