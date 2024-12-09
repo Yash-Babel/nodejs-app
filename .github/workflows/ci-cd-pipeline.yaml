@@ -47,3 +47,29 @@ jobs:
         if: success()
         run: echo "::notice::Deployment succeeded! Your application is live."
 
+      - name: Send Email Notification
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Deployment Failure"
+          body: "The deployment has failed."
+          to: "getnotice7@gmail.com"
+          from: "CI/CD Pipeline"
+
+      - name: Send Email Notification
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Deployment Succeeded"
+          body: "The deployment has succeed."
+          to: "getnotice7@gmail.com"
+          from: "CI/CD Pipeline"
+
